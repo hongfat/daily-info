@@ -1,0 +1,31 @@
+name: Update Daily News
+
+on:
+  schedule:
+    - cron: '0 23 * * *'  # 每天台北時間早上 7 點執行 (UTC 23:00)
+  workflow_dispatch:      # 允許手動點擊執行測試
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 檢出代碼
+        uses: actions/checkout@v3
+
+      - name: 設定 Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 安裝套件
+        run: pip install feedparser
+
+      - name: 執行抓取程式
+        run: python main.py
+
+      - name: 部署到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages  # 將生成的 HTML 放到這個分支
