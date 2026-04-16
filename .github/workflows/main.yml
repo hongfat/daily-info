@@ -31,3 +31,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
           publish_branch: gh-pages
+
+      - name: 安裝套件
+        run: pip install feedparser requests beautifulsoup4
