@@ -4,76 +4,145 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>我的每日新知</title>
+        <title>我的每日新知儀表板</title>
         <style>
-            body { font-family: sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; background: #f9f9f9; }
-            .card { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; shadow: 0 2px 4px rgba(0,0,0,0.1); }
-            a { text-decoration: none; color: #007bff; font-weight: bold; }
-            .time { color: #666; font-size: 0.8em; }
+            body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; line-height: 1.6; padding: 20px; max-width: 900px; margin: auto; background: #f0f2f5; color: #1c1e21; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .time { color: #65676b; font-size: 0.9em; }
+            .category-section { margin-bottom: 30px; }
+            .category-title { border-left: 5px solid #1877f2; padding-left: 10px; margin-bottom: 15px; color: #1c1e21; font-size: 1.4em; }
+            .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+            .card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: transform 0.2s; }
+            .card:hover { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+            .card a { text-decoration: none; color: #1877f2; font-weight: bold; font-size: 1.1em; display: block; }
+            .card .source { color: #65676b; font-size: 0.85em; margin-top: 8px; }
         </style>
     </head>
     <body>
-        <h1>📅 每日新知摘要</h1>
-        <p class="time">最後更新時間：2026-04-15 23:31</p>
-        <hr>
+        <div class="header">
+            <h1>🗓️ 每日新知儀表板</h1>
+            <p class="time">更新於：2026-04-16 08:37 (每日自動更新)</p>
+        </div>
     
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTFBzZ3cyQUhwek1pLV9vYkM3N3VWcFB0WGhzb2RmNkJER3BTbDZqYV9oak1NSUhsXzBoTDljNkhYcFpiWWtTSkZSLXR6akppZw?oc=5" target="_blank">16間台中室內遊樂場推薦！雨天備案、親子放電、科技運動全集結！ - 輕旅行</a>
-        </div>
+        <div class="category-section">
+            <h2 class="category-title">⚾ 棒球賽況與新聞</h2>
+            <div class="grid">
         
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiSEFVX3lxTFBmMVd6dHBlUlpPUjQxa01aVXhGTGdRQlp0NGI1R1dSWndpeXVPSEs0M191RDQ1R0R3dWFwN3puenlJWmpsUTNncQ?oc=5" target="_blank">亞東科技大學傾力支持 首座聽障運動基層訓練站盛大揭幕 - peopo.org</a>
-        </div>
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE5PS3FkSmdzX1dOcmlmRDBHbjhOSVlDRnhSdFlzc0REMzg0aXFBTDFOM2V4OVh3bW9DMlhjUzFnRUl6WmVCaktTVWRTbmZHZXhSVkw5UHd4U2cyNmg5andETjRB?oc=5" target="_blank">2026中職賽程表》主題日、明星賽、上下半季比賽門票、場地攻略－商周頭條｜商周 - 商周</a>
+                <div class="source">發布時間: Tue, 31 Mar 2026 07:00:00 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE8yVk1RWmpVb0ZrSXA4aEZSVU40Nm9kTWVyMlJVWU9BU0l1WnpSbXZGSFJfUzU1aDFqZF9Mb0REbDY0UU1wNGNmRDVmdUNiNzZiN0Q5N1Riamw3REtzQUtHQWExNWV6dDRvVXc?oc=5" target="_blank">2026職棒懶人包》中職、MLB、日職開打時間、轉播資訊一次看 - 民報</a>
+                <div class="source">發布時間: Tue, 24 Mar 2026 07:00:00 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE95ZWhJSm5US094U2hZNzdYbE5IR1RuWW1TZ0ZiXzhGLTlIOG9pSTZFUkx5Rnd2aXkxNWpIbmxGNXc2ZF8xSXE4S3dpTF9NbHlZTG5LUFJJLWwzUGFsZ1o0ZlFJRC01dw?oc=5" target="_blank">中華職棒大聯盟全球資訊網 The Official Site of CPBL - CPBL</a>
+                <div class="source">發布時間: Mon, 09 Mar 2026 07:00:00 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE1FNkJBUUFjUlEta204RjhFanBYNldMckx6RXpvTC02SUNESVpfT3lIbXprQkV3TjUzWDJfWUpNRDVhNVV1OVJyZzAwWkRlZw?oc=5" target="_blank">2026中華職棒賽程》中職37年開幕戰轉播？六隊主題日？上下半季完整場次公布 - 遠見雜誌</a>
+                <div class="source">發布時間: Tue, 24 Mar 2026 07:00:00 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE44QkYxN2FEc3ZldDJZRjBfcGdpZ19VVEhpam9VZ0EyYlJlVzUwaGNuQ21TdXZJdVc1ZHBGR2p4dTdCLXNjMVA2OVY4dlo0UWRh?oc=5" target="_blank">【中華職棒37年】2026賽程場地轉播懶人包整理(持續更新) - 中職 - 棒球 - 運動視界Sports Vision</a>
+                <div class="source">發布時間: Tue, 24 Mar 2026 07:00:00 GMT</div>
+            </div>
+            </div></div>
+        <div class="category-section">
+            <h2 class="category-title">📈 金融投資 (ETF/台股)</h2>
+            <div class="grid">
         
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE04Rmc4OW9kSEZienhnU1FsNmxNZTRadkJyd0VJSmFtWkk4cHo4VjZSNjFFMkp0WUNPcDA5SGF4RzVSLWJrRjJVdzVNdElXSXRM0gFWQVVfeXFMTTNncF9iTjlocXFSVmxTemNqbVRrYS1Xd1V5X29Vb3hhOGkwcWZDUzNza3R1dmZpd0E3OEdpWklLSFN2NVVyQW5JaS14bjdoOWY4V0ZSNVE?oc=5" target="_blank">亞東科技大學傾力支持 首座聽障運動基層訓練站盛大揭幕 - 聯合新聞網</a>
-        </div>
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMi9gJBVV95cUxOUElEOVRrRjBYY3dQcWZsX2NscEMwNVVQcV9oY0kwNzFDVkZEcHdnMFczWWNjMzFpVWNDUHZ3OWNWeDRwWEpWS19CdmpoR252MHhPYnlMRVdJdEdlUWViMm9rX2YyeGkyU1NPZzBJU1hKZDM4TENlckZjX29oa25EVTlzdENMSHZDQTN1eURpLVBFLWd2UUtTN2dTUm9uVm5EdE1yVVY5bHA1cndYRnQ5amxicEZVZDdEMUVLZmt3SjkyM0JuZUsxV1ZIeHVwRG5NZzc4amhBNVZOVUR2VkJHVnBhWExtRkhzUWZvVGRfNlpndWk2WVhpT1BBSjRsbkwxbEJhNnZrS19hQ29YR1BEMGlMcThRSmRkeHd2X2tUOHR2Qk54TUt1bkFxVTljTkhCN0l4MTZDR1hSeHJGUnF5cENiczJ3SC1YbERod2VBdVpxUHFFSjFsczY5NE1FQnBZVUtqMXA5VEFHS3Y3dmhlVGtOYl90dw?oc=5" target="_blank">00905不只高配息，績效、抗跌表現也亮眼！00905能取代0050、006208嗎？｜豐雲學堂2026 年 04 月 - sinotrade.com.tw</a>
+                <div class="source">發布時間: Wed, 08 Apr 2026 05:19:16 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxNLV9OV3gzbnNyWHFNRENZTnUwQ1ZCU2ctTkx3RHZHWGtTZ0FzVTc3dFRDbk5uQVhtbGpya19KRFRESTFmQTgxYXdER0Z3T2pkVzQ0bjF2ZFlnZFVwemlMVU5fdzZwYVVMQmw0YTEzSjVfbXZ0Z2hZX19yNkhMVmdqYQ?oc=5" target="_blank">想撿便宜0050，跌到多少可以買？73元還太貴？3理由別急著接刀！009816、006208…市值ETF絕佳買點曝光 - 今周刊</a>
+                <div class="source">發布時間: Tue, 24 Mar 2026 07:00:00 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMilAJBVV95cUxPVE9vVWc2Y1Z4NDN3ZnlYVWszOVVncXpJa0N6ckthRTJkSTNBSjlnbnVuTnN1S3VjTjdZbUxGWUIzcU9Rd1QtaUpCTW5CSHozR0w1SWlTSng1SmZuSTNaTE9GXzN6aWdTQUtkR0NGeVBKVlZuSjZuRGJCXzJJOTFzWmp3eVJoNDY1S20wbzlKQTd1NVBEazZCa1lIUGs0VXRHdHhiUm5ER1A5cHlOTXUtRGIzTGlKSGVNMTA0NEVNYVpwNUctemRFSGRtaTJJZHpiSktzcDAtNXFzRHRBN3ZoN2hYQ0d0M0NXVXVDcmNkRWMtSVlON2s5QUVGNmRDUVdiSzdoUFRxeXJnbTVMRG10U05qcDE?oc=5" target="_blank">比0050、006208配更多、更親民！市值型ETF話題王009803 - Yahoo股市</a>
+                <div class="source">發布時間: Wed, 03 Dec 2025 08:00:00 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE93czRaVzBHem0xTHNuR1pDQzhiemhDajFYcGx4RkRhaWxIb3oxVmp4eGdFNzEyRXdqQlg2TWVnUXVnRUtZaWVjQVpTR3JxZ1k?oc=5" target="_blank">中東戰火存股逢低布局？首檔「不配息」市值型 ETF：009816 成分股、手續費、績效與 0050、006208 終極對決！ - news.cnyes.com</a>
+                <div class="source">發布時間: Wed, 04 Mar 2026 08:00:00 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1Rd01BTnlxMXNUQkZlMmo5UzZWSlRPUVU4WHlDamVpS0h3NndxeFlRNXhwYy1YaU1UTnB1YW96S3dLOE9BdUgzc0N1MGZOWWZmMWl2am1FenQxQ1N4UnFmWEFIRlJmVWVkTlE?oc=5" target="_blank">市值型ETF績效輾壓！0050、006208傲視群雄達人逆勢加碼00878靠「這招」抱得住- 基金 - 旺得富理財網</a>
+                <div class="source">發布時間: Sun, 18 Jan 2026 08:00:00 GMT</div>
+            </div>
+            </div></div>
+        <div class="category-section">
+            <h2 class="category-title">💻 技術開發與趨勢</h2>
+            <div class="grid">
         
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMi7wJBVV95cUxOenk1LXlUb3dhcTNWSW1uTVFaZFNFTnpMWkIxVjJQeVFSU3pWMHJ4Tmlnb2VOS0xUQ3lqU0tkb0VVM3pNWmphRmQ4SlFVX1dXUndfSjZqVkZPR1hkQXVqTVNuRW9GSDU2RHlpT2wxUmVFS0hCVmhnQlU4U0tnN0wtZU0zOFk4WXRydXJWbTluNmxaS0YyUVBQa1NVTUxiYnNSRjlQR2doMk1UdjRmU0RSNlpuazIwUmFDNGtxSHVWZzZZdzFaVUFldFctZHpydm5xVTNKZENfMWZvM2kxZG5tX0tCeDNpRDIzekQ0enk4OFpWTE41eVBTMWw5NTlNUm1JUGRiVG94WjlmMHlubElyd2t3VGl5SjFxMTNCaWVXRFdHaXA0ZU1QU2I5QUdvQkZVU19IbElXMWdQYXo5dGxpUTV1Ry02REVvTWZOT2FtWkpRN0NHN3d4MEdpQXVYV19GSmMtZXJ6Z2J1bS1IMENn?oc=5" target="_blank">「放下手機」運動全球興起 倡「專注力解放」 擺脫科技束縛 - 巴士的報</a>
-        </div>
+            <div class="card">
+                <a href="https://finance.technews.tw/2026/04/16/formosa-plastics-co-branded-card/" target="_blank">台塑聯名卡將走入歷史！6/1 換發國泰 CUBE 加油最高降 3 元再加 2%</a>
+                <div class="source">發布時間: Thu, 16 Apr 2026 08:32:57 +0000</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://technews.tw/2026/04/16/the-main-reason-tsmc-is-expanding-its-3nm-advanced-process-capacity-is-to-prevent-competitors-from-gaining-an-advantage/" target="_blank">台積電擴產 3 奈米先進製程的主因，就是不給競爭對手機會</a>
+                <div class="source">發布時間: Thu, 16 Apr 2026 08:00:06 +0000</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://finance.technews.tw/2026/04/16/taiwan-market-cap-tops-4-trillion-on-ai-boom-overtaking-uk/" target="_blank">彭博：受惠 AI 熱潮，台股市值破 4 兆美元超越英國</a>
+                <div class="source">發布時間: Thu, 16 Apr 2026 07:50:44 +0000</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://finance.technews.tw/2026/04/16/2025-fii-foxconn/" target="_blank">鴻海旗下工業富聯，2025 營收首超華為、比亞迪</a>
+                <div class="source">發布時間: Thu, 16 Apr 2026 07:48:13 +0000</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://finance.technews.tw/2026/04/16/intel-emib-copos/" target="_blank">CoWoS 產能吃緊，Intel EMIB 競爭升溫，台積電推 CoPoS 應戰</a>
+                <div class="source">發布時間: Thu, 16 Apr 2026 07:44:46 +0000</div>
+            </div>
+            </div></div>
+        <div class="category-section">
+            <h2 class="category-title">📚 圖書館系統與資訊</h2>
+            <div class="grid">
         
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxQWGswR0owbkZZdjZTTDVZTFVSdGFRNjdNcEM2SXY5bFFJd3pHVWtmTzJEeEViMFIzaFlSa1k0YmZNN3VEUURuM2ZmdGlTZHV3YUl6REVnMlVjdUhrVEdvbTlZT29Ca3F0SUxDTldLenlBcU5BN005MzVweVk1U3JoYVJmZlZVR1k5dk5YSg?oc=5" target="_blank">經濟部發表運動科技五大創新技術 迎「Sports Everywhere」智慧運動新商機 - moea.gov.tw</a>
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxQVFNSWUtqZjc2SW9fTjAtYmE5aHNoOHRlOW1NQVJ4N1lmQnoxUjVrNzBIUWcyUmRlMjY0UUw4Z3lLU3ptQTFGbzdrbk1qN0lhNHJzVzRkV1Z2NFhoRldQNkhUNUVvQXJqMERmVUp5cjNJS2NOY3ZXUmhGTEZWVUUyb2NaWQ?oc=5" target="_blank">2025 Library Systems Report - American Libraries Magazine</a>
+                <div class="source">發布時間: Thu, 01 May 2025 07:00:00 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxQS2FObHpNLTBNMmRqc1NScDVUd0VNZVU2ckx6ZnVfcFk3ZHBHeWVCR1dWMDRmZmtiZVJNWV8xWTVjY2xUYWkybGR3dnl3M2s3bzEwdkZMcWRPSjhFNUxCQkctS01ITWNLVTlycUFiUWFvUHJnbXRiejZNcEtMTl9RTEM1UVVOMGhRLTU0aWZwUGxrRF83VFF2Rks0UkVITmxqdFI3Vy01bF9pcTBvcTR2T1hoWjYtQXJLb2xwTg?oc=5" target="_blank">Libraries Launches New Search Interface as Part of Integrated Library Services Platform - Syracuse University Today</a>
+                <div class="source">發布時間: Tue, 09 Jul 2024 07:00:00 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNNm5mdzR0R2owODQ1R0tfVzRWZl9pVjd5ZGN5ak03R0t6R3FlRzlkaFhuS1l0WVkxYkdZSFN6Vi15YTdiMHVhbFhlRmkwMjh6Xy00X05DX1pwUFIyQ0ZWSHlubElyRnRMT2JMUi1rUmR4RExla25zdUxGcVNzaHlzZDhtS0pPRFc3aThpMDJJUUhPdlp0SWVNSFRLR3Q?oc=5" target="_blank">Temple University Selects Ex Libris Alma - PR Newswire</a>
+                <div class="source">發布時間: Sat, 21 Jan 2017 08:00:00 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMie0FVX3lxTE5PSHZxbTYtRHVocGN4MEZYeEV6QTd2V1h6NWw0U1VyNVhZTnA2ZUpLNjRldUJBTEJfajR5RnhUZUE5WGowVUF0OEdZU25WMWtkNGlNM3RhNm5wdTFkZ25KTlJmY19vSVB3Vk9vY1VYeE0xNDUyNzhQZWtCMA?oc=5" target="_blank">selects Ex Libris Alma platform and Primo Discovery Solution to simplify library systems and streamline processes | University of Nevada, Reno - University of Nevada, Reno</a>
+                <div class="source">發布時間: Fri, 24 Jan 2020 17:04:30 GMT</div>
+            </div>
+            
+            <div class="card">
+                <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxNR1ZRQXFyRFhIZDFWZ0hsLS1iSi1PU1I2RU1WSlpESHN6U3JPejlDLUZiZVZMeno5Q0xwb1hVdU5fWHgxS2o0TVBqS3pZTURyUXYteWRrVmxJS3VFc1o4Rm5zbWJtUnpWQk1xR0RHUE1VR3FCWDMyRmJ2cGpuREZpcEJndGxUSmFNdU5oZWM4WjBiUnk4aWhJYVcwNDB2WE9tX2ctR2VSNF9oUzF5dDJabGJR?oc=5" target="_blank">University of Nebraska libraries launching new online catalog/discovery tool - UNK NEWS</a>
+                <div class="source">發布時間: Mon, 07 Dec 2020 08:00:00 GMT</div>
+            </div>
+            </div></div>
+        <div style="text-align: center; margin-top: 50px; padding: 20px; color: #90949c; font-size: 0.8em;">
+            Built with GitHub Actions & Python
         </div>
-        
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTFBURGhaaG5JX3BtajlKNjJLRG1aMFZpMEFsM1BaTHBzdWRFeWQ3RzZVdEpnYmFJMGZmTkJNMGFnRkpOeUt1aWJSMU9PNThKRHVNTWVUVA?oc=5" target="_blank">運動賽事數位化！紐因科技NeuinX 以 AI 打造影像自動化新流程- SayDigi - 點子生活</a>
-        </div>
-        
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE53aE44SnhZRF9kTXZ3b3psMUI5cXJiMHprR21ORXNKQmNlZFhOTjRNZlVHb1d5MF9SNkZaNlhhMTIwT2Y0NlhpcXVFX040UUExbU5GUHZGYlVrQWxpRlQ4?oc=5" target="_blank">台中運動地圖再升級！3座新場館今年啟用 滑冰場、運動科技、兒童技擊亮點一次看 - taichung.gov.tw</a>
-        </div>
-        
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiuwJBVV95cUxNNFJCaTQzWDlYb21vUEZpbEtQbXhjdkVwMnFDc0c1ci1Rbm55QzFUdEtISXdaRlRpcXlLRkhOYnhOYkhzWTVJRmRFek1uamFiR1FBYlNfZ3Z3eHo4cW5jRUItRXQtcW5ldUxyWlFTMmRLZXNzbDJMSXV0QWxRZ1dYRjVhVGs1ZG1PNlZPOEdrVUZsQkJyNldRUXdyeEg0cVF5bmxEaUpUQ2ZVRUhyVkJTQUNNMkhBRXFQQWdNc3JkZ3J4UHhTdHNEcjg2NFU2MldEMk82VDJ1bG9jR3JzVUVBbml6WG1hMUhNZWFxVW93RzlBS0ZYMXpzd2NvQWd4MVI1aHVMVHlWTXJlYW5jR2plOGFZYUZ5MERaTTd5TGF3cjFocTN4UHpQOGpYZm5vN2tSVFFTSG1tNmw0a3M?oc=5" target="_blank">高市府攜手正修科大 推動AI結合運動科學計畫 - Yahoo新聞</a>
-        </div>
-        
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFB1Y1BtWFUzRVN3YmNHbjNRUFk0QU5wZWFJWW8tLTVoMkVocWwzUmtWWFdNNTRRc1hrc1RPOTdYbV9yQjZhUW55dENnaGYxcjRmRmQwQzd3RGhwUm8?oc=5" target="_blank">運動即場景、健康為目標！2026 Motion Vision匯聚跨界資源，定義運動科技平台化新未來 - 數位時代</a>
-        </div>
-        
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE1vbzBiMjFIeEhla0d1TWNVdTRFVTRxdGR2cGN2eURDNXhRRWI4TVZ3N0ZRRUotT0dvYVR0N3h3QjZsb2d6ZWNoRF9OaUUtQQ?oc=5" target="_blank">從專業到全民的科技運動潮 - 遠見雜誌</a>
-        </div>
-        
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1rbW5HREN0TVhxVjJ3RVJ6Q3p2dDFNeHgwVk81OHpPY3lqcVQ5RzNMQTV4TjdCb0pQWW45cWNoUmxNalNuSG0xRlM5M0JHd0hodTNMblJ3?oc=5" target="_blank">跨界實驗室｜關於運動》2026 年運動趨勢：穿戴式科技蟬聯第一！運動讓你真的更快樂了嗎？「五個方法」找回不被數據綁架的運動初心 - onepercent.storm.mg</a>
-        </div>
-        
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1LTWFMWmRrWW0yZk5pOUpKVkEtQkJxNmJoZ3NhdldQai1lS1F5dFppclBFTHlmWkFWNGs4Q1VwQWM2amlUWEdhZ3J1VlVXNWNObVpPRFFOWlM4aEc3T1ZQVTE5UjlBQXE3?oc=5" target="_blank">臺灣五億預算運動科技國家戰略 能否啟動新一代國際藍海市場？ - 報新聞 Mega News</a>
-        </div>
-        
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBYald0LTRSX3llR2hvNkpLeHRycjRjbkxWcXRraGF5Y2w0WlVCY1JqM2c2MzlTM01DWkN3YTFITkFSY0g4bDJ0R0xGVTFJNl8taVlnbkln?oc=5" target="_blank">邊玩邊運動，不用出門就能爬山！3大居家健身科技產品升級你的運動體驗 - 50+全國最大熟齡媒體</a>
-        </div>
-        
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFAyd0wxcDZkSV9GN3NnVWROVjRKeXR1VXcwTVRZNUl2dFNCMTNMV0RrTTloTEF6YXZESlM1WHFTd1lyOXpFODNsY0RNRnNnelNJMTM5S2ZfdEVpU29Yempz?oc=5" target="_blank">全球運動科技新局：融合AI、娛樂與健康的產業進化- 言論 - 工商時報</a>
-        </div>
-        
-        <div class="card">
-            <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTFBRdmRBcEdxQ043dmhndWhwbmhJbjl5VTZRc3Vjc29WYU40WVVpSkw1WlhiVWZxWmhqcU40dU94SHQtclBjMEVvelhjcVd3QlU2?oc=5" target="_blank">運動科技如何協助棒球？台灣經典賽的秘密武器！ 【新聞實驗室】 - 新聞實驗室</a>
-        </div>
-        </body></html>
+    </body>
+    </html>
+    
