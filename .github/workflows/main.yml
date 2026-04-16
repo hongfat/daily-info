@@ -8,29 +8,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:          # 直接在任務中宣告寫入權限，雙重保險
+    permissions:
       contents: write
     steps:
       - name: 檢出代碼
-        uses: actions/checkout@v4 # 升級到 v4
+        uses: actions/checkout@v4
 
       - name: 設定 Python
-        uses: actions/setup-python@v5 # 升級到 v5
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
       - name: 安裝套件
-        run: pip install feedparser
+        run: pip install feedparser requests
 
       - name: 執行抓取程式
         run: python main.py
 
       - name: 部署到 GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4 # 升級到 v4
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
           publish_branch: gh-pages
-
-      - name: 安裝套件
-        run: pip install feedparser requests beautifulsoup4
