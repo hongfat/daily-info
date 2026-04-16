@@ -6,80 +6,158 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>我的每日新知儀表板</title>
         <style>
-            body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; line-height: 1.6; padding: 20px; max-width: 900px; margin: auto; background: #f0f2f5; color: #1c1e21; }
+            body { font-family: 'PingFang TC', sans-serif; line-height: 1.6; padding: 20px; max-width: 900px; margin: auto; background: #f0f2f5; color: #1c1e21; }
             .header { text-align: center; margin-bottom: 30px; }
             .time { color: #65676b; font-size: 0.9em; }
             .category-section { margin-bottom: 30px; }
             .category-title { border-left: 5px solid #1877f2; padding-left: 10px; margin-bottom: 15px; color: #1c1e21; font-size: 1.4em; }
             .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-            .card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: transform 0.2s; }
-            .card:hover { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
-            .card a { text-decoration: none; color: #1877f2; font-weight: bold; font-size: 1.1em; display: block; }
-            .card .source { color: #65676b; font-size: 0.85em; margin-top: 8px; }
+            .card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+            .mlb-card { background: #1a2a44; color: white; border-radius: 10px; padding: 15px; margin-bottom: 10px; }
+            .mlb-card b { color: #f1c40f; }
+            .mlb-score { font-size: 1.2em; font-weight: bold; margin: 5px 0; }
+            .mlb-pitcher { font-size: 0.85em; color: #bdc3c7; }
+            .card a { text-decoration: none; color: #1877f2; font-weight: bold; }
+            .source { color: #65676b; font-size: 0.85em; margin-top: 8px; }
         </style>
     </head>
     <body>
         <div class="header">
             <h1>🗓️ 每日新知儀表板</h1>
-            <p class="time">更新於：2026-04-16 16:43 (每日自動更新)</p>
+            <p class="time">最後更新時間：2026-04-16 16:55 (台北時間)</p>
         </div>
-    
+
         <div class="category-section">
-            <h2 class="category-title">⚾ 棒球賽況與新聞</h2>
+            <h2 class="category-title">⚾ MLB 今日戰況</h2>
             <div class="grid">
+    
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Arizona Diamondbacks vs Baltimore Orioles</div>
+            <div class="mlb-score">8 - 5</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
         
-            <div class="card">
-                <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE5PS3FkSmdzX1dOcmlmRDBHbjhOSVlDRnhSdFlzc0REMzg0aXFBTDFOM2V4OVh3bW9DMlhjUzFnRUl6WmVCaktTVWRTbmZHZXhSVkw5UHd4U2cyNmg5andETjRB?oc=5" target="_blank">2026中職賽程表》主題日、明星賽、上下半季比賽門票、場地攻略－商周頭條｜商周 - 商周</a>
-                <div class="source">發布時間: Tue, 31 Mar 2026 07:00:00 GMT</div>
-            </div>
-            
-            <div class="card">
-                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE8yVk1RWmpVb0ZrSXA4aEZSVU40Nm9kTWVyMlJVWU9BU0l1WnpSbXZGSFJfUzU1aDFqZF9Mb0REbDY0UU1wNGNmRDVmdUNiNzZiN0Q5N1Riamw3REtzQUtHQWExNWV6dDRvVXc?oc=5" target="_blank">2026職棒懶人包》中職、MLB、日職開打時間、轉播資訊一次看 - 民報</a>
-                <div class="source">發布時間: Tue, 24 Mar 2026 07:00:00 GMT</div>
-            </div>
-            
-            <div class="card">
-                <a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE95ZWhJSm5US094U2hZNzdYbE5IR1RuWW1TZ0ZiXzhGLTlIOG9pSTZFUkx5Rnd2aXkxNWpIbmxGNXc2ZF8xSXE4S3dpTF9NbHlZTG5LUFJJLWwzUGFsZ1o0ZlFJRC01dw?oc=5" target="_blank">中華職棒大聯盟全球資訊網 The Official Site of CPBL - CPBL</a>
-                <div class="source">發布時間: Mon, 09 Mar 2026 07:00:00 GMT</div>
-            </div>
-            
-            <div class="card">
-                <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE1FNkJBUUFjUlEta204RjhFanBYNldMckx6RXpvTC02SUNESVpfT3lIbXprQkV3TjUzWDJfWUpNRDVhNVV1OVJyZzAwWkRlZw?oc=5" target="_blank">2026中華職棒賽程》中職37年開幕戰轉播？六隊主題日？上下半季完整場次公布 - 遠見雜誌</a>
-                <div class="source">發布時間: Tue, 24 Mar 2026 07:00:00 GMT</div>
-            </div>
-            
-            <div class="card">
-                <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE44QkYxN2FEc3ZldDJZRjBfcGdpZ19VVEhpam9VZ0EyYlJlVzUwaGNuQ21TdXZJdVc1ZHBGR2p4dTdCLXNjMVA2OVY4dlo0UWRh?oc=5" target="_blank">【中華職棒37年】2026賽程場地轉播懶人包整理(持續更新) - 中職 - 棒球 - 運動視界Sports Vision</a>
-                <div class="source">發布時間: Tue, 24 Mar 2026 07:00:00 GMT</div>
-            </div>
-            </div></div>
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Cleveland Guardians vs St. Louis Cardinals</div>
+            <div class="mlb-score">3 - 5</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Boston Red Sox vs Minnesota Twins</div>
+            <div class="mlb-score">9 - 5</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Kansas City Royals vs Detroit Tigers</div>
+            <div class="mlb-score">1 - 2</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Washington Nationals vs Pittsburgh Pirates</div>
+            <div class="mlb-score">0 - 2</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">San Francisco Giants vs Cincinnati Reds</div>
+            <div class="mlb-score">3 - 8</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Chicago Cubs vs Philadelphia Phillies</div>
+            <div class="mlb-score">11 - 2</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Los Angeles Angels vs New York Yankees</div>
+            <div class="mlb-score">4 - 5</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Miami Marlins vs Atlanta Braves</div>
+            <div class="mlb-score">3 - 6</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Tampa Bay Rays vs Chicago White Sox</div>
+            <div class="mlb-score">8 - 3</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Toronto Blue Jays vs Milwaukee Brewers</div>
+            <div class="mlb-score">1 - 2</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Colorado Rockies vs Houston Astros</div>
+            <div class="mlb-score">1 - 3</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Seattle Mariners vs San Diego Padres</div>
+            <div class="mlb-score">6 - 7</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">Texas Rangers vs Athletics</div>
+            <div class="mlb-score">5 - 6</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        
+        <div class="mlb-card">
+            <div><small>Final</small></div>
+            <div class="mlb-matchup">New York Mets vs Los Angeles Dodgers</div>
+            <div class="mlb-score">2 - 8</div>
+            <div class="mlb-pitcher">先發：未定 (客) vs 未定 (主)</div>
+        </div>
+        </div></div>
         <div class="category-section">
             <h2 class="category-title">📈 金融投資 (ETF/台股)</h2>
             <div class="grid">
         
             <div class="card">
                 <a href="https://news.google.com/rss/articles/CBMi9gJBVV95cUxOUElEOVRrRjBYY3dQcWZsX2NscEMwNVVQcV9oY0kwNzFDVkZEcHdnMFczWWNjMzFpVWNDUHZ3OWNWeDRwWEpWS19CdmpoR252MHhPYnlMRVdJdEdlUWViMm9rX2YyeGkyU1NPZzBJU1hKZDM4TENlckZjX29oa25EVTlzdENMSHZDQTN1eURpLVBFLWd2UUtTN2dTUm9uVm5EdE1yVVY5bHA1cndYRnQ5amxicEZVZDdEMUVLZmt3SjkyM0JuZUsxV1ZIeHVwRG5NZzc4amhBNVZOVUR2VkJHVnBhWExtRkhzUWZvVGRfNlpndWk2WVhpT1BBSjRsbkwxbEJhNnZrS19hQ29YR1BEMGlMcThRSmRkeHd2X2tUOHR2Qk54TUt1bkFxVTljTkhCN0l4MTZDR1hSeHJGUnF5cENiczJ3SC1YbERod2VBdVpxUHFFSjFsczY5NE1FQnBZVUtqMXA5VEFHS3Y3dmhlVGtOYl90dw?oc=5" target="_blank">00905不只高配息，績效、抗跌表現也亮眼！00905能取代0050、006208嗎？｜豐雲學堂2026 年 04 月 - sinotrade.com.tw</a>
-                <div class="source">發布時間: Wed, 08 Apr 2026 05:19:16 GMT</div>
             </div>
             
             <div class="card">
                 <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxNLV9OV3gzbnNyWHFNRENZTnUwQ1ZCU2ctTkx3RHZHWGtTZ0FzVTc3dFRDbk5uQVhtbGpya19KRFRESTFmQTgxYXdER0Z3T2pkVzQ0bjF2ZFlnZFVwemlMVU5fdzZwYVVMQmw0YTEzSjVfbXZ0Z2hZX19yNkhMVmdqYQ?oc=5" target="_blank">想撿便宜0050，跌到多少可以買？73元還太貴？3理由別急著接刀！009816、006208…市值ETF絕佳買點曝光 - 今周刊</a>
-                <div class="source">發布時間: Tue, 24 Mar 2026 07:00:00 GMT</div>
             </div>
             
             <div class="card">
                 <a href="https://news.google.com/rss/articles/CBMilAJBVV95cUxPVE9vVWc2Y1Z4NDN3ZnlYVWszOVVncXpJa0N6ckthRTJkSTNBSjlnbnVuTnN1S3VjTjdZbUxGWUIzcU9Rd1QtaUpCTW5CSHozR0w1SWlTSng1SmZuSTNaTE9GXzN6aWdTQUtkR0NGeVBKVlZuSjZuRGJCXzJJOTFzWmp3eVJoNDY1S20wbzlKQTd1NVBEazZCa1lIUGs0VXRHdHhiUm5ER1A5cHlOTXUtRGIzTGlKSGVNMTA0NEVNYVpwNUctemRFSGRtaTJJZHpiSktzcDAtNXFzRHRBN3ZoN2hYQ0d0M0NXVXVDcmNkRWMtSVlON2s5QUVGNmRDUVdiSzdoUFRxeXJnbTVMRG10U05qcDE?oc=5" target="_blank">比0050、006208配更多、更親民！市值型ETF話題王009803 - Yahoo股市</a>
-                <div class="source">發布時間: Wed, 03 Dec 2025 08:00:00 GMT</div>
             </div>
             
             <div class="card">
                 <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE93czRaVzBHem0xTHNuR1pDQzhiemhDajFYcGx4RkRhaWxIb3oxVmp4eGdFNzEyRXdqQlg2TWVnUXVnRUtZaWVjQVpTR3JxZ1k?oc=5" target="_blank">中東戰火存股逢低布局？首檔「不配息」市值型 ETF：009816 成分股、手續費、績效與 0050、006208 終極對決！ - news.cnyes.com</a>
-                <div class="source">發布時間: Wed, 04 Mar 2026 08:00:00 GMT</div>
             </div>
             
             <div class="card">
-                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1Rd01BTnlxMXNUQkZlMmo5UzZWSlRPUVU4WHlDamVpS0h3NndxeFlRNXhwYy1YaU1UTnB1YW96S3dLOE9BdUgzc0N1MGZOWWZmMWl2am1FenQxQ1N4UnFmWEFIRlJmVWVkTlE?oc=5" target="_blank">市值型ETF績效輾壓！0050、006208傲視群雄達人逆勢加碼00878靠「這招」抱得住- 基金 - 旺得富理財網</a>
-                <div class="source">發布時間: Sun, 18 Jan 2026 08:00:00 GMT</div>
+                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9NaU5WU3NMLWx1eGd2RXhCYWtWemhRZHhzY005d1VrN1lRWkdYT1JuR2ticlh0MFk1bF85Y09CTG4zSEFDSkU3eW9QdnRhOGhKVDlfU0tmUXY4aHJ5TW5EOTF1cUstNnJRM3c?oc=5" target="_blank">0050、006208遇到對手了？這檔市值型新兵祭3大優勢強攻達人爆：連龍頭都在抖- 基金 - 旺得富理財網</a>
             </div>
             </div></div>
         <div class="category-section">
@@ -87,28 +165,23 @@
             <div class="grid">
         
             <div class="card">
-                <a href="https://finance.technews.tw/2026/04/16/formosa-plastics-co-branded-card/" target="_blank">台塑聯名卡將走入歷史！6/1 換發國泰 CUBE 加油最高降 3 元再加 2%</a>
-                <div class="source">發布時間: Thu, 16 Apr 2026 08:32:57 +0000</div>
+                <a href="https://technews.tw/2026/04/16/anyon-particle-lower-dimensional-system/" target="_blank">宇宙不是非黑即白，科學家確定一維系統存在任意子</a>
             </div>
             
             <div class="card">
-                <a href="https://technews.tw/2026/04/16/the-main-reason-tsmc-is-expanding-its-3nm-advanced-process-capacity-is-to-prevent-competitors-from-gaining-an-advantage/" target="_blank">台積電擴產 3 奈米先進製程的主因，就是不給競爭對手機會</a>
-                <div class="source">發布時間: Thu, 16 Apr 2026 08:00:06 +0000</div>
+                <a href="https://finance.technews.tw/2026/04/16/formosa-plastics-co-branded-card/" target="_blank">台塑聯名卡將走入歷史！6/1 換發國泰 CUBE 加油最高降 3 元再加 2%</a>
+            </div>
+            
+            <div class="card">
+                <a href="https://technews.tw/2026/04/16/the-main-reason-tsmc-is-expanding-its-3nm-advanced-process-capacity-is-to-prevent-competitors-from-gaining-an-advantage/" target="_blank">台積電擴產 3 奈米主因，就是不給競爭對手機會</a>
             </div>
             
             <div class="card">
                 <a href="https://finance.technews.tw/2026/04/16/taiwan-market-cap-tops-4-trillion-on-ai-boom-overtaking-uk/" target="_blank">彭博：受惠 AI 熱潮，台股市值破 4 兆美元超越英國</a>
-                <div class="source">發布時間: Thu, 16 Apr 2026 07:50:44 +0000</div>
             </div>
             
             <div class="card">
                 <a href="https://finance.technews.tw/2026/04/16/2025-fii-foxconn/" target="_blank">鴻海旗下工業富聯，2025 營收首超華為、比亞迪</a>
-                <div class="source">發布時間: Thu, 16 Apr 2026 07:48:13 +0000</div>
-            </div>
-            
-            <div class="card">
-                <a href="https://finance.technews.tw/2026/04/16/intel-emib-copos/" target="_blank">CoWoS 產能吃緊，Intel EMIB 競爭升溫，台積電推 CoPoS 應戰</a>
-                <div class="source">發布時間: Thu, 16 Apr 2026 07:44:46 +0000</div>
             </div>
             </div></div>
         <div class="category-section">
@@ -117,27 +190,22 @@
         
             <div class="card">
                 <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxQVFNSWUtqZjc2SW9fTjAtYmE5aHNoOHRlOW1NQVJ4N1lmQnoxUjVrNzBIUWcyUmRlMjY0UUw4Z3lLU3ptQTFGbzdrbk1qN0lhNHJzVzRkV1Z2NFhoRldQNkhUNUVvQXJqMERmVUp5cjNJS2NOY3ZXUmhGTEZWVUUyb2NaWQ?oc=5" target="_blank">2025 Library Systems Report - American Libraries Magazine</a>
-                <div class="source">發布時間: Thu, 01 May 2025 07:00:00 GMT</div>
             </div>
             
             <div class="card">
                 <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxQS2FObHpNLTBNMmRqc1NScDVUd0VNZVU2ckx6ZnVfcFk3ZHBHeWVCR1dWMDRmZmtiZVJNWV8xWTVjY2xUYWkybGR3dnl3M2s3bzEwdkZMcWRPSjhFNUxCQkctS01ITWNLVTlycUFiUWFvUHJnbXRiejZNcEtMTl9RTEM1UVVOMGhRLTU0aWZwUGxrRF83VFF2Rks0UkVITmxqdFI3Vy01bF9pcTBvcTR2T1hoWjYtQXJLb2xwTg?oc=5" target="_blank">Libraries Launches New Search Interface as Part of Integrated Library Services Platform - Syracuse University Today</a>
-                <div class="source">發布時間: Tue, 09 Jul 2024 07:00:00 GMT</div>
             </div>
             
             <div class="card">
                 <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNNm5mdzR0R2owODQ1R0tfVzRWZl9pVjd5ZGN5ak03R0t6R3FlRzlkaFhuS1l0WVkxYkdZSFN6Vi15YTdiMHVhbFhlRmkwMjh6Xy00X05DX1pwUFIyQ0ZWSHlubElyRnRMT2JMUi1rUmR4RExla25zdUxGcVNzaHlzZDhtS0pPRFc3aThpMDJJUUhPdlp0SWVNSFRLR3Q?oc=5" target="_blank">Temple University Selects Ex Libris Alma - PR Newswire</a>
-                <div class="source">發布時間: Sat, 21 Jan 2017 08:00:00 GMT</div>
             </div>
             
             <div class="card">
                 <a href="https://news.google.com/rss/articles/CBMie0FVX3lxTE5PSHZxbTYtRHVocGN4MEZYeEV6QTd2V1h6NWw0U1VyNVhZTnA2ZUpLNjRldUJBTEJfajR5RnhUZUE5WGowVUF0OEdZU25WMWtkNGlNM3RhNm5wdTFkZ25KTlJmY19vSVB3Vk9vY1VYeE0xNDUyNzhQZWtCMA?oc=5" target="_blank">selects Ex Libris Alma platform and Primo Discovery Solution to simplify library systems and streamline processes | University of Nevada, Reno - University of Nevada, Reno</a>
-                <div class="source">發布時間: Fri, 24 Jan 2020 17:04:30 GMT</div>
             </div>
             
             <div class="card">
                 <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxNR1ZRQXFyRFhIZDFWZ0hsLS1iSi1PU1I2RU1WSlpESHN6U3JPejlDLUZiZVZMeno5Q0xwb1hVdU5fWHgxS2o0TVBqS3pZTURyUXYteWRrVmxJS3VFc1o4Rm5zbWJtUnpWQk1xR0RHUE1VR3FCWDMyRmJ2cGpuREZpcEJndGxUSmFNdU5oZWM4WjBiUnk4aWhJYVcwNDB2WE9tX2ctR2VSNF9oUzF5dDJabGJR?oc=5" target="_blank">University of Nebraska libraries launching new online catalog/discovery tool - UNK NEWS</a>
-                <div class="source">發布時間: Mon, 07 Dec 2020 08:00:00 GMT</div>
             </div>
             </div></div>
         <div style="text-align: center; margin-top: 50px; padding: 20px; color: #90949c; font-size: 0.8em;">
