@@ -10,7 +10,10 @@ NEWS_SOURCES = {
 }
 
 def generate_html():
-    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    # 獲取目前的 UTC 時間，並加上 8 小時轉換為台灣時間
+    tz_offset = datetime.timezone(datetime.timedelta(hours=8))
+    now = datetime.datetime.now(tz_offset).strftime("%Y-%m-%d %H:%M")
+    # -----------------------
     
     # HTML 標頭與樣式
     html_template = f"""
