@@ -23,7 +23,7 @@
     <body>
         <div class="header">
             <h1>🚀 即時新知儀表板</h1>
-            <p class="time">新聞抓取時間：2026-04-17 10:20 (台北時間)</p>
+            <p class="time">新聞摘要更新時間：2026-04-17 11:06 (台北時間)</p>
         </div>
 
         <div class="category-section">
@@ -34,10 +34,9 @@
         </div>
 
         <script>
-            // 前端即時抓取 MLB API
             async function updateMLB() {
                 try {
-                    const response = await fetch('https://statsapi.mlb.com/api/v1/schedule?sportId=1');
+                    const response = await fetch('https://statsapi.mlb.com/api/v1/schedule?sportId=1&hydrate=probablePitcher');
                     const data = await response.json();
                     const container = document.getElementById('mlb-container');
                     
@@ -51,21 +50,23 @@
 
                     games.forEach(game => {
                         const status = game.status.abstractGameState;
-                        const isLive = status === 'Live';
                         const awayTeam = game.teams.away.team.name;
                         const homeTeam = game.teams.home.team.name;
                         const awayScore = game.teams.away.score || 0;
                         const homeScore = game.teams.home.score || 0;
-                        const awayP = game.teams.away.probablePitcher ? game.teams.away.probablePitcher.name : '未定';
-                        const homeP = game.teams.home.probablePitcher ? game.teams.home.probablePitcher.name : '未定';
+                        const awayP = game.teams.away.probablePitcher ? game.teams.away.probablePitcher.fullName : '未定';
+                        const homeP = game.teams.home.probablePitcher ? game.teams.home.probablePitcher.fullName : '未定';
 
                         const card = document.createElement('div');
                         card.className = 'mlb-card';
                         card.innerHTML = `
-                            <div style="font-size:0.8em">${isLive ? '<span class="live-dot">● LIVE</span>' : status}</div>
-                            <div>${awayTeam} vs ${homeTeam}</div>
+                            <div style="font-size:0.8em">${status === 'Live' ? '<span class="live-dot">● LIVE</span>' : status}</div>
+                            <div style="font-weight:bold">${awayTeam} vs ${homeTeam}</div>
                             <div class="mlb-score">${status === 'Preview' ? '尚未開打' : awayScore + ' - ' + homeScore}</div>
-                            <div class="mlb-pitcher">先發：${awayP} vs ${homeP}</div>
+                            <div class="mlb-pitcher">
+                                P: ${awayP} <br>
+                                vs ${homeP}
+                            </div>
                         `;
                         container.appendChild(card);
                     });
@@ -74,7 +75,6 @@
                 }
             }
 
-            // 網頁開啟後執行，且每 60 秒自動更新一次
             updateMLB();
             setInterval(updateMLB, 60000);
         </script>
@@ -96,11 +96,11 @@
             </div>
             
             <div class="card">
-                <a href="https://news.google.com/rss/articles/CBMifEFVX3lxTFBvNGZwM1hQMUVmLWNWVDluUFFnOVA2Wmx1T3J1aHJWQ0xMV3ZoNjZhbHFELTYzamx4d2tlWFZGNDdtLUdMczVnTHpkSV9iZ1lmTWhEbmNRTEN1T0pTbGFHMUFUd09TRUEzdUNZdk9RVjNWbWdEODBkOUJ3dzQ?oc=5" target="_blank">市值型ETF 009816不配息，值得買嗎？雨果分析：設計具特殊性，1類人最划算 - Smart自學網</a>
+                <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1Rd01BTnlxMXNUQkZlMmo5UzZWSlRPUVU4WHlDamVpS0h3NndxeFlRNXhwYy1YaU1UTnB1YW96S3dLOE9BdUgzc0N1MGZOWWZmMWl2am1FenQxQ1N4UnFmWEFIRlJmVWVkTlE?oc=5" target="_blank">市值型ETF績效輾壓！0050、006208傲視群雄達人逆勢加碼00878靠「這招」抱得住- 基金 - 旺得富理財網</a>
             </div>
             
             <div class="card">
-                <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE1lR3VTWHE5UU1Sbl90cW02VGsxYXJjS19MMnFqYzVmanZXZUVORU9fVHROVVFKZV9LUWFadWZZNnNxZFJkcVBkLXF3YmtDNTRuQmJoSFpaQmlVVXpmR3ppLXBNR1Q?oc=5" target="_blank">五大台股ETF比一比！市值型完勝高息型 0050績效、投資人數雙冠 - TradingView – 追踪所有市場</a>
+                <a href="https://news.google.com/rss/articles/CBMifEFVX3lxTFBvNGZwM1hQMUVmLWNWVDluUFFnOVA2Wmx1T3J1aHJWQ0xMV3ZoNjZhbHFELTYzamx4d2tlWFZGNDdtLUdMczVnTHpkSV9iZ1lmTWhEbmNRTEN1T0pTbGFHMUFUd09TRUEzdUNZdk9RVjNWbWdEODBkOUJ3dzQ?oc=5" target="_blank">市值型ETF 009816不配息，值得買嗎？雨果分析：設計具特殊性，1類人最划算 - Smart自學網</a>
             </div>
             </div></div>
         <div class="category-section">
@@ -108,23 +108,23 @@
             <div class="grid">
         
             <div class="card">
-                <a href="https://finance.technews.tw/2026/04/17/tsmcs-impressive-first-quarter-results-prompt-daiwa-capital-and-morgan-stanley-to-raise-their-target-price/" target="_blank">台積電第一季令人驚艷業績，大和資本與大摩調升目標價至 2,330 及 2,588 元</a>
+                <a href="https://technews.tw/2026/04/17/ca-ocean-in-long-period-of-heatwave/" target="_blank">海溫打破百年紀錄，科學家：加州乾燥舒爽氣候將消失</a>
             </div>
             
             <div class="card">
-                <a href="https://technews.tw/2026/04/17/google-told-to-share-search-data-with-ai-rivals-in-eu-proposal/" target="_blank">打破數據壟斷，歐盟提六大措施限制 Google 搜尋霸權</a>
+                <a href="https://finance.technews.tw/2026/04/17/boeing-expands-satellite-business/" target="_blank">波音積極擴張衛星業務  2026 年目標交付 26 顆</a>
             </div>
             
             <div class="card">
-                <a href="https://finance.technews.tw/2026/04/17/ai-hvdc-psu-delta/" target="_blank">PSU、HVDC 帶動升級，高盛調升台達電目標價</a>
+                <a href="https://infosecu.technews.tw/2026/04/17/anthropic-introduces-claude-opus-4-7/" target="_blank">聚焦進階軟體工程技術，Anthropic 釋出新模型 Claude Opus 4.7</a>
             </div>
             
             <div class="card">
-                <a href="https://technews.tw/2026/04/17/elon-musks-other-companies-are-the-biggest-buyers-of-the-tesla-cybertruck/" target="_blank">馬斯克旗下公司成 Cybertruck 最大買家，占銷量近兩成</a>
+                <a href="https://technews.tw/2026/04/17/ipv6-usage-reaches-historic-50-across-google-services-matching-ipv4/" target="_blank">Google IPv6 流量首達 50%！與 IPv4 平分秋色，網路協議迎來黃金交叉</a>
             </div>
             
             <div class="card">
-                <a href="https://finance.technews.tw/2026/04/17/goldman-sachs-is-optimistic-about-the-growth-potential-of-mediateks-ai-asic-business/" target="_blank">高盛看好聯發科 AI ASIC 業務成長潛力，給予目標價大增至 2,454 元</a>
+                <a href="https://finance.technews.tw/2026/04/17/michael-burry-buys-software-stocks/" target="_blank">麥可貝瑞抄底軟體股：建倉 PayPal、Salesforce</a>
             </div>
             </div></div>
         <div class="category-section">
