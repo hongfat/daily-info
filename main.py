@@ -74,7 +74,6 @@ def generate_html():
             <script>
                 async function updateMLB() {{
                     try {{
-                        // 增加 linescore,venue 參數
                         const response = await fetch('https://statsapi.mlb.com/api/v1/schedule?sportId=1&hydrate=probablePitcher,linescore,venue');
                         const data = await response.json();
                         const container = document.getElementById('mlb-container');
@@ -121,7 +120,7 @@ def generate_html():
                             `;
                             container.appendChild(card);
                         }});
-                    } catch (e) {{ console.error(e); }}
+                    }} catch (e) {{ console.error(e); }}
                 }}
                 updateMLB();
                 setInterval(updateMLB, 60000);
