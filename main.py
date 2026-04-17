@@ -49,44 +49,50 @@ def generate_html():
 
         <script>
             // 前端即時抓取 MLB API
-            async function updateMLB() {{
-                try {{
-                    const response = await fetch('https://statsapi.mlb.com/api/v1/schedule?sportId=1');
-                    const data = await response.json();
-                    const container = document.getElementById('mlb-container');
-                    
-                    if (!data.dates || data.dates.length === 0) {{
-                        container.innerHTML = '<p>今日目前無賽事</p>';
-                        return;
-                    }}
+            async function updateMLB() {
+    try {
+        // 加入 hydrate 參數獲取先發投手
+        const response = await fetch('https://statsapi.mlb.com/api/v1/schedule?sportId=1&hydrate=probablePitcher');
+        const data = await response.json();
+        const container = document.getElementById('mlb-container');
+        
+        if (!data.dates || data.dates.length === 0) {
+            container.innerHTML = '<p>今日目前無賽事</p>';
+            return;
+        }
 
-                    const games = data.dates[0].games;
-                    container.innerHTML = '';
+        const games = data.dates[0].games;
+        container.innerHTML = '';
 
-                    games.forEach(game => {{
-                        const status = game.status.abstractGameState;
-                        const isLive = status === 'Live';
-                        const awayTeam = game.teams.away.team.name;
-                        const homeTeam = game.teams.home.team.name;
-                        const awayScore = game.teams.away.score || 0;
-                        const homeScore = game.teams.home.score || 0;
-                        const awayP = game.teams.away.probablePitcher ? game.teams.away.probablePitcher.name : '未定';
-                        const homeP = game.teams.home.probablePitcher ? game.teams.home.probablePitcher.name : '未定';
+        games.forEach(game => {
+            const status = game.status.abstractGameState;
+            const awayTeam = game.teams.away.team.name;
+            const homeTeam = game.teams.home.team.name;
+            const awayScore = game.teams.away.score || 0;
+            const homeScore = game.teams.home.score || 0;
 
-                        const card = document.createElement('div');
-                        card.className = 'mlb-card';
-                        card.innerHTML = `
-                            <div style="font-size:0.8em">${{isLive ? '<span class="live-dot">● LIVE</span>' : status}}</div>
-                            <div>${{awayTeam}} vs ${{homeTeam}}</div>
-                            <div class="mlb-score">${{status === 'Preview' ? '尚未開打' : awayScore + ' - ' + homeScore}}</div>
-                            <div class="mlb-pitcher">先發：${{awayP}} vs ${{homeP}}</div>
-                        `;
-                        container.appendChild(card);
-                    }});
-                }} catch (error) {{
-                    console.error('MLB API Error:', error);
-                }}
-            }}
+            // 讀取 Hydrate 後的投手資料
+            // API 路徑通常在 teams.away.probablePitcher.fullName
+            const awayP = game.teams.away.probablePitcher ? game.teams.away.probablePitcher.fullName : '未定';
+            const homeP = game.teams.home.probablePitcher ? game.teams.home.probablePitcher.fullName : '未定';
+
+            const card = document.createElement('div');
+            card.className = 'mlb-card';
+            card.innerHTML = `
+                <div style="font-size:0.8em">${status === 'Live' ? '<span class="live-dot">● LIVE</span>' : status}</div>
+                <div style="font-weight:bold">${awayTeam} vs ${homeTeam}</div>
+                <div class="mlb-score">${status === 'Preview' ? '尚未開打' : awayScore + ' - ' + homeScore}</div>
+                <div class="mlb-pitcher">
+                    P: ${awayP} <br>
+                    vs ${homeP}
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    } catch (error) {
+        console.error('MLB API Error:', error);
+    }
+}
 
             // 網頁開啟後執行，且每 60 秒自動更新一次
             updateMLB();
