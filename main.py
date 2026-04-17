@@ -1,7 +1,7 @@
 import feedparser
 import datetime
 
-# 新聞來源 (維持後端抓取即可)
+# 新聞來源
 NEWS_SOURCES = {
     "📈 金融投資 (ETF/台股)": "https://news.google.com/rss/search?q=006208+ETF+台股+股市分析&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
     "💻 技術開發與趨勢": "https://technews.tw/feed/",
@@ -12,6 +12,7 @@ def generate_html():
     tz_offset = datetime.timezone(datetime.timedelta(hours=8))
     now = datetime.datetime.now(tz_offset).strftime("%Y-%m-%d %H:%M")
     
+    # 注意：這裡的 JavaScript 大括號都改成了 {{ }}
     html_template = f"""
     <!DOCTYPE html>
     <html lang="zh-TW">
@@ -37,7 +38,7 @@ def generate_html():
     <body>
         <div class="header">
             <h1>🚀 即時新知儀表板</h1>
-            <p class="time">新聞抓取時間：{now} (台北時間)</p>
+            <p class="time">新聞摘要更新時間：{now} (台北時間)</p>
         </div>
 
         <div class="category-section">
@@ -48,59 +49,52 @@ def generate_html():
         </div>
 
         <script>
-            // 前端即時抓取 MLB API
-            async function updateMLB() {
-    try {
-        // 加入 hydrate 參數獲取先發投手
-        const response = await fetch('https://statsapi.mlb.com/api/v1/schedule?sportId=1&hydrate=probablePitcher');
-        const data = await response.json();
-        const container = document.getElementById('mlb-container');
-        
-        if (!data.dates || data.dates.length === 0) {
-            container.innerHTML = '<p>今日目前無賽事</p>';
-            return;
-        }
+            async function updateMLB() {{
+                try {{
+                    const response = await fetch('https://statsapi.mlb.com/api/v1/schedule?sportId=1&hydrate=probablePitcher');
+                    const data = await response.json();
+                    const container = document.getElementById('mlb-container');
+                    
+                    if (!data.dates || data.dates.length === 0) {{
+                        container.innerHTML = '<p>今日目前無賽事</p>';
+                        return;
+                    }}
 
-        const games = data.dates[0].games;
-        container.innerHTML = '';
+                    const games = data.dates[0].games;
+                    container.innerHTML = '';
 
-        games.forEach(game => {
-            const status = game.status.abstractGameState;
-            const awayTeam = game.teams.away.team.name;
-            const homeTeam = game.teams.home.team.name;
-            const awayScore = game.teams.away.score || 0;
-            const homeScore = game.teams.home.score || 0;
+                    games.forEach(game => {{
+                        const status = game.status.abstractGameState;
+                        const awayTeam = game.teams.away.team.name;
+                        const homeTeam = game.teams.home.team.name;
+                        const awayScore = game.teams.away.score || 0;
+                        const homeScore = game.teams.home.score || 0;
+                        const awayP = game.teams.away.probablePitcher ? game.teams.away.probablePitcher.fullName : '未定';
+                        const homeP = game.teams.home.probablePitcher ? game.teams.home.probablePitcher.fullName : '未定';
 
-            // 讀取 Hydrate 後的投手資料
-            // API 路徑通常在 teams.away.probablePitcher.fullName
-            const awayP = game.teams.away.probablePitcher ? game.teams.away.probablePitcher.fullName : '未定';
-            const homeP = game.teams.home.probablePitcher ? game.teams.home.probablePitcher.fullName : '未定';
+                        const card = document.createElement('div');
+                        card.className = 'mlb-card';
+                        card.innerHTML = `
+                            <div style="font-size:0.8em">${{status === 'Live' ? '<span class="live-dot">● LIVE</span>' : status}}</div>
+                            <div style="font-weight:bold">${{awayTeam}} vs ${{homeTeam}}</div>
+                            <div class="mlb-score">${{status === 'Preview' ? '尚未開打' : awayScore + ' - ' + homeScore}}</div>
+                            <div class="mlb-pitcher">
+                                P: ${{awayP}} <br>
+                                vs ${{homeP}}
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    }});
+                }} catch (error) {{
+                    console.error('MLB API Error:', error);
+                }}
+            }}
 
-            const card = document.createElement('div');
-            card.className = 'mlb-card';
-            card.innerHTML = `
-                <div style="font-size:0.8em">${status === 'Live' ? '<span class="live-dot">● LIVE</span>' : status}</div>
-                <div style="font-weight:bold">${awayTeam} vs ${homeTeam}</div>
-                <div class="mlb-score">${status === 'Preview' ? '尚未開打' : awayScore + ' - ' + homeScore}</div>
-                <div class="mlb-pitcher">
-                    P: ${awayP} <br>
-                    vs ${homeP}
-                </div>
-            `;
-            container.appendChild(card);
-        });
-    } catch (error) {
-        console.error('MLB API Error:', error);
-    }
-}
-
-            // 網頁開啟後執行，且每 60 秒自動更新一次
             updateMLB();
             setInterval(updateMLB, 60000);
         </script>
     """
 
-    # 處理後端新聞 (這部分維持靜態生成，因為新聞不需秒級更新)
     for category, url in NEWS_SOURCES.items():
         feed = feedparser.parse(url)
         html_template += f"""
