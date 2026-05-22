@@ -5,108 +5,464 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>我的即時新知儀表板</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
         <style>
             :root {
-                --primary-bg: #f4f7f6;
-                --mlb-blue: #1a2a44;
-                --accent-yellow: #f1c40f;
-                --text-dark: #2c3e50;
-                --card-shadow: 0 4px 6px rgba(0,0,0,0.07);
+                --primary-bg: #f8fafc;
+                --mlb-blue: #1e3a8a;
+                --accent-yellow: #f59e0b;
+                --text-dark: #0f172a;
+                --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
             }
-            body { font-family: 'PingFang TC', 'Heiti TC', sans-serif; background-color: var(--primary-bg); color: var(--text-dark); margin: 0; padding: 20px; }
+            body {
+                font-family: 'Inter', 'Noto Sans TC', 'PingFang TC', sans-serif;
+                background-color: var(--primary-bg);
+                color: var(--text-dark);
+                margin: 0;
+                padding: 20px;
+                line-height: 1.5;
+            }
             .container { max-width: 1000px; margin: 0 auto; }
             
-            .header { text-align: center; padding: 20px 0; background: white; border-radius: 15px; box-shadow: var(--card-shadow); margin-bottom: 30px; }
-            .header h1 { margin: 0; font-size: 1.8em; color: var(--mlb-blue); }
-            .time { font-size: 0.85em; color: #7f8c8d; margin-top: 5px; }
+            .header {
+                text-align: center;
+                padding: 24px 0;
+                background: white;
+                border-radius: 16px;
+                box-shadow: var(--card-shadow);
+                margin-bottom: 30px;
+                border: 1px solid #f1f5f9;
+            }
+            .header h1 { margin: 0; font-size: 1.8em; color: var(--mlb-blue); font-weight: 700; }
+            .time { font-size: 0.85em; color: #64748b; margin-top: 6px; }
 
-            .section-title { border-left: 6px solid var(--mlb-blue); padding-left: 15px; margin: 30px 0 15px; font-size: 1.4em; display: flex; align-items: center; }
+            .section-title {
+                border-left: 6px solid var(--mlb-blue);
+                padding-left: 15px;
+                margin: 30px 0 15px;
+                font-size: 1.4em;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+            }
+            
+            /* MLB 標籤頁樣式 */
+            .mlb-tabs {
+                display: flex;
+                justify-content: center;
+                gap: 12px;
+                margin-bottom: 24px;
+                border-bottom: 2px solid #e2e8f0;
+                padding-bottom: 12px;
+            }
+            .mlb-tab {
+                background: none;
+                border: none;
+                color: #64748b;
+                font-size: 1em;
+                font-weight: 600;
+                padding: 10px 24px;
+                cursor: pointer;
+                border-radius: 24px;
+                transition: all 0.3s ease;
+            }
+            .mlb-tab:hover {
+                color: var(--mlb-blue);
+                background-color: #f1f5f9;
+            }
+            .mlb-tab.active {
+                color: white;
+                background-color: var(--mlb-blue);
+                box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+            }
+
+            /* 比賽 Grid 面板 */
+            .mlb-panel {
+                display: none;
+                animation: fadeIn 0.4s ease;
+            }
+            .mlb-panel.active {
+                display: block;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
             
             /* MLB 卡片樣式 */
-            .mlb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
-            .mlb-card { background: linear-gradient(135deg, #1a2a44 0%, #2c3e50 100%); color: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.1); }
-            .status-tag { font-size: 0.75em; background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
-            .live-dot { color: #ff4d4f; animation: blink 1s infinite; }
-            @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+            .mlb-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 20px;
+            }
+            .mlb-card {
+                background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+                color: #f1f5f9;
+                border-radius: 16px;
+                padding: 20px;
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+                border: 1px solid rgba(255,255,255,0.05);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                min-height: 250px;
+                box-sizing: border-box;
+            }
+            .mlb-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
             
-            .team-row { display: flex; justify-content: space-between; align-items: center; margin: 5px 0; }
-            .team-name { font-weight: 600; font-size: 1.1em; }
-            .score { font-size: 1.4em; font-weight: 800; color: var(--accent-yellow); }
+            .status-tag {
+                font-size: 0.75em;
+                font-weight: 700;
+                letter-spacing: 0.05em;
+                background: rgba(255,255,255,0.1);
+                padding: 4px 12px;
+                border-radius: 30px;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                margin-bottom: 16px;
+                align-self: flex-start;
+            }
+            .status-tag.live {
+                background: rgba(239, 68, 68, 0.2);
+                color: #f87171;
+            }
+            .status-tag.preview {
+                background: rgba(59, 130, 246, 0.2);
+                color: #60a5fa;
+            }
+            .status-tag.final {
+                background: rgba(16, 185, 129, 0.2);
+                color: #34d399;
+            }
             
-            .pitcher-info { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 15px; padding-top: 10px; font-size: 0.85em; color: #bdc3c7; line-height: 1.4; }
-            .venue { font-size: 0.75em; color: #95a5a6; margin-top: 5px; text-align: right; }
+            .live-dot {
+                width: 6px;
+                height: 6px;
+                background-color: #ef4444;
+                border-radius: 50%;
+                display: inline-block;
+                animation: blink 1.2s infinite;
+            }
+            @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+            
+            .team-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 6px 0;
+            }
+            .team-name {
+                font-weight: 500;
+                font-size: 1.05em;
+                color: #cbd5e1;
+            }
+            .team-row.winner .team-name {
+                font-weight: 700;
+                color: #ffffff;
+            }
+            .score {
+                font-size: 1.4em;
+                font-weight: 800;
+                color: #64748b;
+            }
+            .team-row.winner .score {
+                color: var(--accent-yellow);
+            }
+            
+            /* 投手/決策資訊 */
+            .info-section {
+                border-top: 1px solid rgba(255,255,255,0.08);
+                margin-top: 16px;
+                padding-top: 12px;
+                font-size: 0.85em;
+                color: #94a3b8;
+                flex-grow: 1;
+            }
+            .info-title {
+                font-size: 0.8em;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: #64748b;
+                margin-bottom: 8px;
+                font-weight: 600;
+            }
+            .pitcher-item {
+                display: flex;
+                justify-content: space-between;
+                margin: 4px 0;
+            }
+            .pitcher-label {
+                color: #64748b;
+            }
+            .pitcher-name {
+                color: #cbd5e1;
+                font-weight: 500;
+            }
+            
+            .decisions-section {
+                border-top: 1px solid rgba(255,255,255,0.08);
+                margin-top: 16px;
+                padding-top: 12px;
+                font-size: 0.85em;
+                flex-grow: 1;
+            }
+            .decision-row {
+                display: flex;
+                justify-content: space-between;
+                margin: 4px 0;
+            }
+            .decision-tag {
+                padding: 1px 6px;
+                border-radius: 4px;
+                font-size: 0.75em;
+                font-weight: 700;
+                margin-right: 8px;
+                display: inline-block;
+                width: 32px;
+                text-align: center;
+            }
+            .decision-tag.w { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+            .decision-tag.l { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+            .decision-tag.s { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
+            .venue {
+                font-size: 0.75em;
+                color: #64748b;
+                margin-top: 12px;
+                padding-top: 8px;
+                border-top: 1px dashed rgba(255,255,255,0.05);
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+            .no-games, .loading-text {
+                text-align: center;
+                color: #64748b;
+                font-size: 0.95em;
+                padding: 40px 0;
+                grid-column: 1 / -1;
+            }
 
             /* 新聞卡片樣式 */
             .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-            .news-card { background: white; padding: 18px; border-radius: 12px; box-shadow: var(--card-shadow); transition: transform 0.2s; text-decoration: none; color: inherit; display: block; }
-            .news-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-            .news-card b { color: #2980b9; font-size: 1.05em; display: block; margin-bottom: 8px; }
+            .news-card { background: white; padding: 18px; border-radius: 12px; box-shadow: var(--card-shadow); transition: transform 0.2s; text-decoration: none; color: inherit; display: block; border: 1px solid #f1f5f9; }
+            .news-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.08); border-color: #e2e8f0; }
+            .news-card b { color: #1e3a8a; font-size: 1.05em; display: block; margin-bottom: 8px; font-weight: 600; }
             
-            footer { text-align: center; padding: 40px 0; color: #95a5a6; font-size: 0.8em; }
+            footer { text-align: center; padding: 40px 0; color: #94a3b8; font-size: 0.8em; }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
                 <h1>🚀 我的個人新知儀表板</h1>
-                <div class="time">新聞更新：2026-05-22 14:54 | MLB：每 60 秒即時更新</div>
+                <div class="time">新聞更新：2026-05-22 15:04 | MLB：每 60 秒即時更新</div>
             </div>
 
             <div class="section-title">⚾ MLB 即時戰報</div>
-            <div id="mlb-container" class="mlb-grid">
-                <p>正在載入最新球況...</p>
+            <div class="mlb-tabs">
+                <button id="tab-today" class="mlb-tab active" onclick="switchMlbTab('today')">今日賽事</button>
+                <button id="tab-tomorrow" class="mlb-tab" onclick="switchMlbTab('tomorrow')">明日賽事</button>
+            </div>
+            
+            <div id="mlb-today-panel" class="mlb-panel active">
+                <div id="mlb-today-grid" class="mlb-grid">
+                    <p class="loading-text">正在載入今日球況...</p>
+                </div>
+            </div>
+            
+            <div id="mlb-tomorrow-panel" class="mlb-panel">
+                <div id="mlb-tomorrow-grid" class="mlb-grid">
+                    <p class="loading-text">正在載入明日球況...</p>
+                </div>
             </div>
 
             <script>
+                function switchMlbTab(day) {
+                    const tabs = document.querySelectorAll('.mlb-tab');
+                    const panels = document.querySelectorAll('.mlb-panel');
+                    
+                    tabs.forEach(tab => tab.classList.remove('active'));
+                    panels.forEach(panel => panel.classList.remove('active'));
+                    
+                    if (day === 'today') {
+                        document.getElementById('tab-today').classList.add('active');
+                        document.getElementById('mlb-today-panel').classList.add('active');
+                    } else {
+                        document.getElementById('tab-tomorrow').classList.add('active');
+                        document.getElementById('mlb-tomorrow-panel').classList.add('active');
+                    }
+                }
+
                 async function updateMLB() {
                     try {
-                        const response = await fetch('https://statsapi.mlb.com/api/v1/schedule?sportId=1&hydrate=probablePitcher,linescore,venue');
+                        const getTaipeiDateStr = (offsetDays = 0) => {
+                            const d = new Date();
+                            const tzOffset = d.getTimezoneOffset() * 60000;
+                            const taipeiTime = new Date(d.getTime() + tzOffset + (8 * 3600000) + (offsetDays * 86400000));
+                            const yyyy = taipeiTime.getUTCFullYear();
+                            const mm = String(taipeiTime.getUTCMonth() + 1).padStart(2, '0');
+                            const dd = String(taipeiTime.getUTCDate()).padStart(2, '0');
+                            return `${yyyy}-${mm}-${dd}`;
+                        };
+
+                        const todayStr = getTaipeiDateStr(0);
+                        const tomorrowStr = getTaipeiDateStr(1);
+                        const yesterdayStr = getTaipeiDateStr(-1);
+
+                        const response = await fetch(`https://statsapi.mlb.com/api/v1/schedule?sportId=1&startDate=${yesterdayStr}&endDate=${tomorrowStr}&hydrate=probablePitcher,linescore,venue,decisions`);
                         const data = await response.json();
-                        const container = document.getElementById('mlb-container');
+                        
+                        const todayContainer = document.getElementById('mlb-today-grid');
+                        const tomorrowContainer = document.getElementById('mlb-tomorrow-grid');
                         
                         if (!data.dates || data.dates.length === 0) {
-                            container.innerHTML = '<p style="color:#65676b;">今日暫無比賽</p>';
+                            todayContainer.innerHTML = '<p class="no-games">今日暫無比賽資訊</p>';
+                            tomorrowContainer.innerHTML = '<p class="no-games">明日暫無比賽資訊</p>';
                             return;
                         }
 
-                        const games = data.dates[0].games;
-                        container.innerHTML = '';
+                        const todayGames = [];
+                        const tomorrowGames = [];
 
-                        games.forEach(game => {
-                            const status = game.status.abstractGameState;
-                            const detailStatus = game.status.detailedState;
-                            const isLive = status === 'Live';
-                            const away = game.teams.away;
-                            const home = game.teams.home;
-                            const inning = game.linescore ? (game.linescore.inningHalf + ' ' + game.linescore.currentInningOrdinal) : '';
-                            
-                            const awayP = away.probablePitcher ? away.probablePitcher.fullName : '未定';
-                            const homeP = home.probablePitcher ? home.probablePitcher.fullName : '未定';
-                            const venue = game.venue.name;
+                        data.dates.forEach(dateBucket => {
+                            if (dateBucket.games) {
+                                dateBucket.games.forEach(game => {
+                                    const gameUtc = new Date(game.gameDate);
+                                    const gameTaipei = new Date(gameUtc.getTime() + (8 * 3600000));
+                                    const yyyy = gameTaipei.getUTCFullYear();
+                                    const mm = String(gameTaipei.getUTCMonth() + 1).padStart(2, '0');
+                                    const dd = String(gameTaipei.getUTCDate()).padStart(2, '0');
+                                    const gameDateStr = `${yyyy}-${mm}-${dd}`;
 
-                            const card = document.createElement('div');
-                            card.className = 'mlb-card';
-                            card.innerHTML = `
-                                <div class="status-tag">
-                                    ${isLive ? '<span class="live-dot">● </span>' + inning : detailStatus}
-                                </div>
-                                <div class="team-row">
-                                    <span class="team-name">${away.team.name}</span>
-                                    <span class="score">${status === 'Preview' ? '-' : (away.score || 0)}</span>
-                                </div>
-                                <div class="team-row">
-                                    <span class="team-name">${home.team.name}</span>
-                                    <span class="score">${status === 'Preview' ? '-' : (home.score || 0)}</span>
-                                </div>
-                                <div class="pitcher-info">
-                                    P: ${awayP} (客) <br>
-                                    P: ${homeP} (主)
-                                </div>
-                                <div class="venue">📍 ${venue}</div>
-                            `;
-                            container.appendChild(card);
+                                    if (gameDateStr === todayStr) {
+                                        todayGames.push(game);
+                                    } else if (gameDateStr === tomorrowStr) {
+                                        tomorrowGames.push(game);
+                                    }
+                                });
+                            }
                         });
-                    } catch (e) { console.error(e); }
+
+                        const renderGames = (games, container) => {
+                            if (games.length === 0) {
+                                container.innerHTML = '<p class="no-games">暫無比賽</p>';
+                                return;
+                            }
+                            container.innerHTML = '';
+                            
+                            games.sort((a, b) => new Date(a.gameDate) - new Date(b.gameDate));
+
+                            games.forEach(game => {
+                                const status = game.status.abstractGameState;
+                                const detailStatus = game.status.detailedState;
+                                const isLive = status === 'Live';
+                                const isFinal = status === 'Final' || game.status.statusCode === 'F' || game.status.statusCode === 'FT';
+                                const isPreview = status === 'Preview';
+
+                                const away = game.teams.away;
+                                const home = game.teams.home;
+                                
+                                const isAwayWinner = isFinal && away.score > home.score;
+                                const isHomeWinner = isFinal && home.score > away.score;
+
+                                let statusClass = 'preview';
+                                let statusText = detailStatus;
+                                if (isLive) {
+                                    statusClass = 'live';
+                                    const inning = game.linescore ? (game.linescore.inningHalf + ' ' + game.linescore.currentInningOrdinal) : '進行中';
+                                    statusText = `<span class="live-dot"></span> ${inning}`;
+                                } else if (isFinal) {
+                                    statusClass = 'final';
+                                    statusText = '已結束';
+                                } else if (isPreview) {
+                                    const gameUtc = new Date(game.gameDate);
+                                    const gameTaipei = new Date(gameUtc.getTime() + (8 * 3600000));
+                                    const hh = String(gameTaipei.getUTCHours()).padStart(2, '0');
+                                    const mm = String(gameTaipei.getUTCMinutes()).padStart(2, '0');
+                                    statusText = `${hh}:${mm} 開賽`;
+                                }
+
+                                const awayScore = isPreview ? '-' : (away.score ?? 0);
+                                const homeScore = isPreview ? '-' : (home.score ?? 0);
+
+                                let footerHtml = '';
+
+                                if (isFinal) {
+                                    const dec = game.decisions;
+                                    const winnerName = dec && dec.winner ? dec.winner.fullName : '無';
+                                    const loserName = dec && dec.loser ? dec.loser.fullName : '無';
+                                    const saveName = dec && dec.save ? dec.save.fullName : null;
+
+                                    footerHtml = `
+                                        <div class="decisions-section">
+                                            <div class="decision-row">
+                                                <span><span class="decision-tag w">勝投</span><span class="pitcher-name">${winnerName}</span></span>
+                                            </div>
+                                            <div class="decision-row">
+                                                <span><span class="decision-tag l">敗投</span><span class="pitcher-name">${loserName}</span></span>
+                                            </div>
+                                            ${saveName ? `
+                                            <div class="decision-row">
+                                                <span><span class="decision-tag s">救援</span><span class="pitcher-name">${saveName}</span></span>
+                                            </div>
+                                            ` : ''}
+                                        </div>
+                                    `;
+                                } else {
+                                    const awayP = away.probablePitcher ? away.probablePitcher.fullName : '未定';
+                                    const homeP = home.probablePitcher ? home.probablePitcher.fullName : '未定';
+                                    footerHtml = `
+                                        <div class="info-section">
+                                            <div class="info-title">預測先發投手</div>
+                                            <div class="pitcher-item">
+                                                <span class="pitcher-label">客隊 (P)</span>
+                                                <span class="pitcher-name">${awayP}</span>
+                                            </div>
+                                            <div class="pitcher-item">
+                                                <span class="pitcher-label">主隊 (P)</span>
+                                                <span class="pitcher-name">${homeP}</span>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+
+                                const card = document.createElement('div');
+                                card.className = 'mlb-card';
+                                card.innerHTML = `
+                                    <div class="status-tag ${statusClass}">
+                                        ${statusText}
+                                    </div>
+                                    <div class="team-row ${isAwayWinner ? 'winner' : ''}">
+                                        <span class="team-name">${away.team.name}</span>
+                                        <span class="score">${awayScore}</span>
+                                    </div>
+                                    <div class="team-row ${isHomeWinner ? 'winner' : ''}">
+                                        <span class="team-name">${home.team.name}</span>
+                                        <span class="score">${homeScore}</span>
+                                    </div>
+                                    ${footerHtml}
+                                    <div class="venue">📍 ${game.venue.name}</div>
+                                `;
+                                container.appendChild(card);
+                            });
+                        };
+
+                        renderGames(todayGames, todayContainer);
+                        renderGames(tomorrowGames, tomorrowContainer);
+
+                    } catch (e) {
+                        console.error(e);
+                        document.getElementById('mlb-today-grid').innerHTML = '<p class="no-games">更新資料失敗</p>';
+                        document.getElementById('mlb-tomorrow-grid').innerHTML = '<p class="no-games">更新資料失敗</p>';
+                    }
                 }
                 updateMLB();
                 setInterval(updateMLB, 60000);
@@ -142,6 +498,10 @@
             <div class="section-title">💻 技術開發與趨勢</div>
             <div class="news-grid">
         
+                <a href="https://technews.tw/2026/05/22/khi-shares-surge-11-on-ai-robot-partnership-with-nvidia/" target="_blank" class="news-card">
+                    <b>傳和輝達合作、機器人廠川崎重工一度飆逾 11%</b>
+                </a>
+            
                 <a href="https://finance.technews.tw/2026/05/22/nvidias-memory-costs-soar-485-percent/" target="_blank" class="news-card">
                     <b>大摩：輝達記憶體成本飆 435%  Vera Rubin 恐天價</b>
                 </a>
@@ -160,10 +520,6 @@
             
                 <a href="https://finance.technews.tw/2026/05/22/submarine-cable-certification/" target="_blank" class="news-card">
                     <b>海纜認證、AI 爆發、核能點火！華新麗華焦佑倫：今年是非常好的一年</b>
-                </a>
-            
-                <a href="https://technews.tw/2026/05/22/ussocom-is-developing-new-hypervelocity-5-56-ammo-and-will-replace-the-old-50cal-with-338-norma-magnum/" target="_blank" class="news-card">
-                    <b>美特戰部隊將研發 5.56 公釐「超高初速」步槍彈，用 .338 機槍取代 .50 重機槍</b>
                 </a>
             </div>
             <div class="section-title">📚 圖書館系統與資訊</div>
